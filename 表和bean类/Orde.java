@@ -7,6 +7,7 @@ public class Orde {
     private String ophone;//预约人电话
     private String optime;//预约时间
     private String otime;//当前时间
+    private String ostate;
 
     public int getOid() {
         return oid;
@@ -54,5 +55,13 @@ public class Orde {
 
     public void setOtime(String otime) {
         this.otime = otime;
+    }
+
+    public String getOstate() {
+        return ostate;
+    }
+
+    public void setOstate(String ostate) {
+        this.ostate = ostate;
     }
 }
