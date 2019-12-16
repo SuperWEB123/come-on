@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="viewport" content="width=480,target-densitydpi=dpi,minimal-ui">
+    <meta name="viewport" content="width=480,minimal-ui">
+    <meta name="viewport" content="width=480,targrt-densitydip=device-dip,minimal-ui">
+    <meta name="viewport" content="width=480,initial-scale=scalevalue,maximum-scale=scalevalue,minimum-scale=scalevalue,minimal-ui">
+    <meta name="viewport" content="targrt-densitydpi=dpi,minimal-ui">
+
+    <title>预约表</title>
+    <link rel="stylesheet" href="layui-v2.5.5/layui/css/layui.css" media="all">
+    <script src="layui-v2.5.5/layui/layui.js"></script>
+
+<!--    <head><meta http-equiv="refresh" content="5"></head>-->
+
+    <style>
+        .layui-form{
+            width: 100%;
+
+        }
+        .layui-form-item{
+            position: relative;
+            height: 600px;
+            width: 600px;
+            top: 50px;
+            margin: 0 auto;
+            background: url("img/724192221.jpeg");
+            background-size: 100% 100%;
+            z-index: 99999;
+            border: 7px solid #ccc;
+        }
+
+
+    </style>
+    <!--<script>-->
+    <!--    function myrefresh(){-->
+    <!--    window.location.reload();-->
+    <!--    }-->
+    <!--    setTimeout('myrefresh()',1000); //指定1秒刷新一次-->
+    <!--    </script>-->
+
+
+</head>
+<body>
+
+<div class="layui-form">
+    <div class="layui-form-item">
+        <form action="appotionmentservlet" method="post" >
+
+            <div class="namebox">
+<!--                <label class="uesrname">姓名</label>-->
+                <h3 style="height: 30px;width: 50px;float: left;margin-top: 6px">姓名：</h3>
+                <div class="uesrname-content" style="height: 30px;float: left;width: 91.5%">
+                    <input type="text" name="uname" lay-verify="required" placeholder="请输入姓名"  class="layui-input" style="height: 30px;float: right">
+                </div>
+            </div>
+
+            <div class="telephonebox" style="margin-top: 2px">
+                <h3 style="height: 30px;width: 50px;margin-top: 5px">电话：</h3>
+                <div class="usertelephone-content" style="height: 30px;float: left;width: 91.5%;margin-top: 5px">
+                    <input type="text" name="telephone" id ="mobile" lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input" onblur="checkmobile()" style="height: 30px;float: right;">
+                </div>
+                <div style="margin-left: 50px"><span id="mb"></span></div>
+            </div>
+
+            <div class="hidbox" style="margin-top: 2px">
+<!--                <label class="hid">房源id</label>-->
+                <h3 style="height: 30px;width: 50px;float: left;margin-top: 7px">房源：</h3>
+                <div class="hid-content" style="height: 30px;float: left;width: 91.5%;margin-top: 2px">
+                    <input type="text" name="hid" lay-verify="required" placeholder="请输入房源id" autocomplete="off" class="layui-input" style="height: 30px;float: right">
+                </div>
+            </div>
+
+
+            <div class="sexbox" pane="" style="height: 30px;float: left;width: 91.5%;margin-left: 2px">
+<!--                <label class="usersex">性别</label>-->
+                <h3 style="height: 30px;width: 50px;float: left;margin-top: 10px">性别</h3>
+                <div class="usersex-content" style="height: 30px">
+                    <input type="radio" name="sex" value="男" title="男" checked="">
+                    <input type="radio" name="sex" value="女" title="女">
+                </div>
+            </div>
+
+
+
+            <div class="layui-inline" style="height: 30px;float: left;width: 91.5%">
+<!--                <label class="layui-form-label"> 可选日期 </label>-->
+                <h3 style="height: 30px;width: 70px;float: left;margin-top: 10px">可选日期</h3>
+                <div class="layui-input-inline">
+                    <input type="date" class="layui-input"  name="date" id="date" placeholder="yyyy-MM-dd" style="height: 30px;margin-top: 5px">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+
+                    <font color='green'>可提前30天以内</font>
+                </div>
+            </div>
+
+            <!--ID="8:00-10:00"-->
+
+            <div class="layui-inline" style="float: left; width: 30%;margin-top: 10px">
+                <label class="layui-form-label" style="margin-left: -30px;">可选时间</label>
+                <div class="layui-input-inline" id="changetime"  align="center">
+                    <div onclick="datetime()"><input type="radio" name="time"   id="time" value="08:00-10:00"       title="08：00-10：00"  checked=""> <br></div>
+                    <div onclick="datetime1()"> <input type="radio" name="time"   id="time1"  value="10:00-12:00"      title="10：00-12：00" ><br></div>
+                    <div onclick="datetime2()"><input type="radio" name="time"    id="time2" value="14:00-16:00"      title="14：00-16：00" ><br></div>
+                    <div onclick="datetime3()"> <input type="radio" name="time"   id="time3" value="16:00-18:00"      title="16：00-18：00"></div>
+                    <span id="un1"></span>
+                </div>
+            </div>
+            <div style="float: left;width: 40%;height: 175px;top: -50%;left: -50% ;margin-top: 10px" > <p style="margin-left:30px;color: green;margin-top: 80px">处于时间段中也是无效时间</p></div>
+    <div style="clear: both;"></div>
+            <script src="js/time.js"></script>
+
+            <div class="tijiao" style="margin-top:10px ;margin-left: 160px ">
+                <button class="layui-btn" lay-submit="" lay-filter="" onclick="" style="border-radius: 20px">提交预约</button>
+            </div>
+
+
+        </form>
+    </div>
+
+</div>
+
+
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+
+        //前后若干天可选，这里以10天为例
+        laydate.render({
+            elem: '#date'
+            ,min: 0
+            ,max: 30
+        });
+    });
+
+    layui.use('form', function() {
+        var form = layui.form
+    });
+
+</script>
+
+</body>
+</html>

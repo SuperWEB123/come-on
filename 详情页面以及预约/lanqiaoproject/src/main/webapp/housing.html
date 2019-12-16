@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>轮播</title>
+    <link rel="stylesheet" href="layui-v2.5.5/layui/css/layui.css" media="all">
+
+
+</head>
+<body>
+<div id = "test" class="test1" align="center">
+
+    <div class="layui-carousel" id="test1" >
+        <div carousel-item>
+            <img src="img/housing1/h1.jpg">
+            <img src="img/housing1/h2.jpg">
+            <img src="img/housing1/h3.jpg">
+<!--图片轮播-->
+<!--            <div v-for = "item in products":key="item">-->
+<!--                <img style="width: 100%" :src="item"/>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+<!--详情-->
+    <div v-for = "item in totalCount">
+        <div><font style="border-top: 20px;font-size: 18px">{{item.hsynopsis}}</font><br></div>
+        <div style="margin-top: 5%;float: left;"><font style="color: red;font-size: 18px;margin-top: 10%">约{{item.hmoney}}万</font></div>
+        <div style="margin-top: 5%;margin-left: 17%;float: left;"><font style="color: red;font-size: 18px">{{item.housetype}}</font></div>
+        <div style="margin-top: 5%;margin-left: 17%;float: left;"><font style="color: red;font-size: 18px">建面{{item.harea}}平</font></div>
+        <div style="clear: both;"></div>
+        <div style="margin-top: 5%"><font style="font-size: 18px">地址:{{item.haddress}}</font><br></div>
+<!--        <div style="margin-top: 10%"></div>-->
+    </div>
+<!--    <div v-for="(value, key, index) in totalCount" v-show="index!=6&index!=0">-->
+<!--        <div>{{ value }}</div>-->
+<!--    </div>-->
+</div>
+
+<div align="center" style="margin-top: 10%">
+    <a href="/lanqiaoproject/time .html"><button class="layui-btn layui-btn-normal">预约看房</button></a>
+</div>
+
+<script src="js/Vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/housing.js"></script>
+<script src="layui-v2.5.5/layui/layui.all.js"></script>
+<!--轮播方法-->
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,height:'200px'
+           // ,arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    });
+</script>
+</body>
+</html>
