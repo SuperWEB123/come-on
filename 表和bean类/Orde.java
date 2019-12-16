@@ -7,7 +7,7 @@ public class Orde {
     private String ophone;//预约人电话
     private String optime;//预约时间
     private String otime;//当前时间
-    private String ostate;
+    private String ostate;//状态码
 
     public int getOid() {
         return oid;
